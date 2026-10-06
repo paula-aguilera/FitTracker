@@ -1,0 +1,8 @@
+<resources>
+    <style name="Base.Theme.FitTracker" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/verde</item>
+        <item name="colorAccent">@color/verde</item>
+    </style>
+
+    <style name="Theme.FitTracker" parent="Base.Theme.FitTracker" />
+</resources>

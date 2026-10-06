@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Pantalla principal de registro.
+    ScrollView: hace que todo el formulario sea desplazable en pantallas
+    pequeñas, sin que los elementos se solapen.
+    LinearLayout vertical: organiza los campos del formulario uno debajo de otro.
+    TableLayout: muestra el resumen de la meta diaria en filas y columnas.
+    RecyclerView: lista de sesiones registradas.
+-->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo"
+    android:fillViewport="true"
+    tools:context=".RegistroActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/titulo_registro"
+            android:textColor="@color/verde"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- ================= FORMULARIO ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/fondo_seccion"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Spinner: tipo de entrenamiento -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_tipo"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinnerTipo"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp" />
+
+            <!-- Duración: necesaria para calcular el progreso de la meta -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/lbl_duracion"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtDuracion"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="@string/hint_duracion"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="3" />
+
+            <!-- RadioGroup: intensidad -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/lbl_intensidad"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/rgIntensidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbBaja"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/intensidad_baja" />
+
+                <RadioButton
+                    android:id="@+id/rbMedia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/intensidad_media" />
+
+                <RadioButton
+                    android:id="@+id/rbAlta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/intensidad_alta" />
+            </RadioGroup>
+
+            <!-- CheckBox: aspectos completados -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/lbl_aspectos"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/chkCalentamiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chk_calentamiento" />
+
+            <CheckBox
+                android:id="@+id/chkHidratacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chk_hidratacion" />
+
+            <CheckBox
+                android:id="@+id/chkEstiramiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chk_estiramiento" />
+
+            <!-- RatingBar: dificultad / esfuerzo (1 a 5 estrellas) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/lbl_dificultad"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <RatingBar
+                android:id="@+id/ratingDificultad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:numStars="5"
+                android:rating="0"
+                android:stepSize="1" />
+
+            <Button
+                android:id="@+id/btnGuardar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/verde"
+                android:text="@string/btn_guardar"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- ================= RESUMEN / PROGRESO ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/fondo_seccion"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_resumen"
+                android:textColor="@color/verde"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- ProgressBar: progreso de la meta diaria (minutos) -->
+            <ProgressBar
+                android:id="@+id/progressMeta"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:max="60"
+                android:progress="0"
+                android:progressTint="@color/verde" />
+
+            <!-- TableLayout: resumen en formato etiqueta / valor -->
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:stretchColumns="1">
+
+                <TableRow>
+                    <TextView
+                        android:padding="4dp"
+                        android:text="@string/lbl_sesiones"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtTotalSesiones"
+                        android:gravity="end"
+                        android:padding="4dp"
+                        android:text="0" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:padding="4dp"
+                        android:text="@string/lbl_minutos"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtTotalMinutos"
+                        android:gravity="end"
+                        android:padding="4dp"
+                        android:text="0 min" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:padding="4dp"
+                        android:text="@string/lbl_meta"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtMeta"
+                        android:gravity="end"
+                        android:padding="4dp"
+                        android:text="60 min" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:padding="4dp"
+                        android:text="@string/lbl_cumplido"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtPorcentaje"
+                        android:gravity="end"
+                        android:padding="4dp"
+                        android:text="0%" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+
+        <!-- ================= LISTADO (RecyclerView) ================= -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/lbl_listado"
+            android:textColor="@color/verde"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtVacio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/sin_sesiones"
+            android:textColor="@color/gris_texto" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerSesiones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:nestedScrollingEnabled="false" />
+
+    </LinearLayout>
+</ScrollView>

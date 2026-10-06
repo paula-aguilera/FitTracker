@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">FitTracker</string>
+
+    <!-- Bienvenida -->
+    <string name="titulo_app">FITTRACKER</string>
+    <string name="mensaje_bienvenida">Registra tus entrenamientos, controla tus hábitos saludables y alcanza tu meta diaria de actividad física.</string>
+    <string name="btn_ingresar">INGRESAR</string>
+    <string name="desc_logo">Logo de FitTracker</string>
+
+    <!-- Registro -->
+    <string name="titulo_registro">Registro de Actividad</string>
+    <string name="lbl_tipo">Tipo de entrenamiento</string>
+    <string name="lbl_duracion">Duración (minutos)</string>
+    <string name="hint_duracion">Ej: 30</string>
+    <string name="lbl_intensidad">Intensidad</string>
+    <string name="intensidad_baja">Baja</string>
+    <string name="intensidad_media">Media</string>
+    <string name="intensidad_alta">Alta</string>
+    <string name="lbl_aspectos">Aspectos completados</string>
+    <string name="chk_calentamiento">Calentamiento realizado</string>
+    <string name="chk_hidratacion">Hidratación adecuada</string>
+    <string name="chk_estiramiento">Estiramiento final</string>
+    <string name="lbl_dificultad">Dificultad / esfuerzo percibido</string>
+    <string name="btn_guardar">GUARDAR SESIÓN</string>
+
+    <!-- Resumen -->
+    <string name="lbl_resumen">Meta diaria</string>
+    <string name="lbl_sesiones">Sesiones:</string>
+    <string name="lbl_minutos">Minutos acumulados:</string>
+    <string name="lbl_meta">Meta:</string>
+    <string name="lbl_cumplido">Cumplido:</string>
+    <string name="lbl_listado">Sesiones registradas</string>
+    <string name="sin_sesiones">Aún no hay sesiones registradas.</string>
+
+    <!-- Mensajes -->
+    <string name="error_duracion">Ingresa una duración válida en minutos</string>
+    <string name="error_intensidad">Selecciona una intensidad</string>
+    <string name="error_rating">Califica la dificultad de la sesión</string>
+    <string name="msg_guardado">Sesión registrada</string>
+
+    <string-array name="tipos_entrenamiento">
+        <item>Fuerza</item>
+        <item>Cardio</item>
+        <item>Yoga</item>
+        <item>Calistenia</item>
+    </string-array>
+</resources>
